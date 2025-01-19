@@ -19,17 +19,18 @@ const Home = ({ regions, orders, users }) => {
 	return (
 		<div>
 			<div>
-				<div className="pt-[15.5px] w-full px-4 justify-start items-center gap-4 flex">
+				<div className="max-w-[550px] mx-auto pt-[15.5px] w-full px-4 justify-start items-center gap-4 flex">
 					<div className="py-[12px] flex-1 text-center text-[#141414] text-lg font-semibold">Home page</div>
 				</div>
 
-				<div className="h-[17px] bg-[#E9EAED] w-full"></div>
+				<div className="md:h-[27px] h-[17px] bg-[#E9EAED] w-full"></div>
 
-				<div className="w-full px-4 py-2 bg-white border-t border-[#e3e6ea] justify-between items-start gap-2.5 flex">
+				<div className="max-w-[550px] mx-auto w-full px-4 py-2 bg-white border-t border-[#e3e6ea] justify-between items-start gap-2.5 flex">
 					{regions?.docs.map((i) => (
 						<div
 							onClick={() => {
 								setTab(i.data().name);
+								setStatusTab("New")
 							}}
 							className={`${tab == i.data().name ? "bg-[#0084ff] text-white " : "bg-[#e9eaed] text-black "} flex-1 cursor-pointer h-[38px] p-1 rounded-md justify-start items-center gap-2.5 flex`}
 						>
@@ -38,9 +39,9 @@ const Home = ({ regions, orders, users }) => {
 					))}
 				</div>
 
-				<div className="h-[12px] bg-[#E9EAED] w-full"></div>
+				<div className="md:h-[22px] h-[12px] bg-[#E9EAED] w-full"></div>
 
-				<div className="w-full px-4 py-2 bg-white border-t border-[#e3e6ea] justify-between items-start gap-2.5 flex">
+				<div className="max-w-[550px] mx-auto w-full px-4 py-2 bg-white border-t border-[#e3e6ea] justify-between items-start gap-2.5 flex">
 					<div onClick={() => setStatusTab("New")} className={`${statusTab != "New" ? "opacity-50 " : " border border-[#0000002d] "} transition-all duration-200 cursor-pointer flex-1 p-1 bg-[#eef9ff] rounded-md border border-[#d5f2ff] justify-start items-center gap-2.5 flex`}>
 						<div className="flex-1 text-center text-[#1878f3] font-medium">New</div>
 					</div>
@@ -58,7 +59,7 @@ const Home = ({ regions, orders, users }) => {
 					</div>
 				</div>
 
-				<div className="flex justify-center mt-3 opacity-80">
+				<div className="flex max-w-[550px] mx-auto justify-center mt-3 opacity-80">
 					{
 						!orders?.docs.filter(item => {
 							if (statusTab == item.data().status) {
@@ -74,7 +75,7 @@ const Home = ({ regions, orders, users }) => {
 					}
 				</div>
 
-				<div className="max-h-screen overflow-auto pb-[300px]">
+				<div className="max-w-[550px] mx-auto max-h-screen overflow-auto pb-[300px]">
 					{orders?.docs
 						.filter((item) => {
 							if (statusTab === item.data().status) {

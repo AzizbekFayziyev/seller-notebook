@@ -47,9 +47,9 @@ const CreateOrder = ({ regions, users, orders }) => {
 	};
 
 	return (
-		<>
-			<div className="overflow-hidden my-[35px]">
-				<div className="px-[16px]">
+		<div className="overflow-auto h-screen">
+			<div className="my-[35px]">
+				<div className="max-w-[550px] mx-auto px-[16px]">
 					<Link to={"/"} className="w-full transition-all duration-300 hover:translate-x-1 cursor-pointer pb-[18px] justify-start items-center gap-4 flex">
 						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
 							<path d="M13.3333 21.3333L8 16M8 16L13.3333 10.6667M8 16L24 16" stroke="#28303F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -58,10 +58,10 @@ const CreateOrder = ({ regions, users, orders }) => {
 					</Link>
 				</div>
 
-				<div className="max-h-screen overflow-auto">
+				<div className="overflow-auto">
 					<div className="h-[22px] bg-[#E9EAED] w-full"></div>
 
-					<div className="w-full p-4 pb-[210px] bg-white flex-col justify-start items-start flex">
+					<div className="max-w-[550px] mx-auto w-full p-4 bg-white flex-col justify-start items-start flex">
 						<div className="w-full">
 							<AddProperty setProperties={setProperties} />
 						</div>
@@ -139,7 +139,7 @@ const CreateOrder = ({ regions, users, orders }) => {
 				</div>
 			</div>
 
-			<div className="absolute bg-white w-full bottom-0 left-0">
+			<div className="relative max-w-[550px] mx-auto bg-white w-full bottom-5 left-0">
 				<div className="py-[16px] w-full px-4 justify-start items-start gap-3 inline-flex">
 					<Link to={"/"} className="flex-1  mx-auto transition-all cursor-pointer duration-300 hover:bg-[#e7e7e9] h-11 px-6 py-4 bg-[#f5f5f7] rounded-xl justify-center items-center flex">
 						<div className="text-center text-[#ff0000] text-base font-medium font-['TT Interfaces'] leading-snug">Cancel</div>
@@ -152,7 +152,7 @@ const CreateOrder = ({ regions, users, orders }) => {
 					)}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

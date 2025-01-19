@@ -50,7 +50,7 @@ const AddProperty = ({ setProperties }) => {
 					</div>
 				</div>
 				<div className="self-stretch my-4 flex-col justify-start items-start gap-2 flex">
-					<input value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Title" className="w-full focus:border-gray-400 transition-all duration-300 outline-none px-4 py-3 bg-white text-[#161616] text-sm rounded-xl border border-[#e3e6ea] justify-start items-center gap-3 inline-flex" />
+					<input value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Title" className="w-full focus:border-gray-400 transition-all duration-300 outline-none px-4 py-3 bg-white text-[#161616] text-base rounded-xl border border-[#e3e6ea] justify-start items-center gap-3 inline-flex" />
 				</div>
 				<div onClick={addProperty} className="flex-1 mt-[16px] text-white hover:text-[#0084ff] cursor-pointer transition-all duration-300 bg-[#0084ff] py-3 hover:bg-white rounded-xl border border-[#0084ff] justify-center items-center gap-3 flex">
 					<div className="text-sm font-medium">Create</div>

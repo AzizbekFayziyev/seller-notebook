@@ -48,7 +48,7 @@ const Register = ({ users }) => {
 	};
 
 	return (
-		<div className="my-[35px] px-[16px]">
+		<div className="max-w-[550px] mx-auto my-[35px] px-[16px]">
 			<div>
 				<div className="flex-col justify-center items-center gap-2 flex">
 					<div className="text-[#141414] text-2xl font-semibold">Register</div>
@@ -127,7 +127,7 @@ const Register = ({ users }) => {
 
 					<div className="mt-[5px] flex w-full justify-end">
 						<Link to="/login" className="text-base text-[#696969]">
-							Have an accound?
+							Have an account?
 						</Link>
 					</div>
 				</form>

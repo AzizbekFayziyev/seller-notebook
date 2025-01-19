@@ -37,7 +37,7 @@ const App = () => {
 
 	return (
         <div>
-            <Wrapper>
+            <div>
                 <div>
                     <Routes>
                         <Route path="/register" element={<Register users={users} />} />
@@ -46,7 +46,7 @@ const App = () => {
                         <Route path="/create-order" element={<CreateOrder orders={orders} regions={regions} users={users} />} />
                     </Routes>
                 </div>
-            </Wrapper>
+            </div>
         </div>
     );
 };
