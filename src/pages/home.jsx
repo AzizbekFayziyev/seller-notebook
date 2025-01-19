@@ -69,7 +69,7 @@ const Home = ({ regions, orders, users }) => {
 					})[0] && <p>No orders yet</p>}
 				</div>
 
-				<div className="max-w-[550px] mx-auto max-h-screen overflow-auto pb-[325px]">
+				<div className="max-w-[550px] mx-auto max-h-dvh overflow-auto pb-[325px]">
 					{orders?.docs
 						.filter((item) => {
 							if (statusTab === item.data().status) {
