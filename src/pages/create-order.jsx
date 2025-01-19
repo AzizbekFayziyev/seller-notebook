@@ -47,7 +47,7 @@ const CreateOrder = ({ regions, users, orders }) => {
 	};
 
 	return (
-		<div className="overflow-auto min-h-dvh">
+		<div className="overflow-scroll h-dvh">
 			<div className="my-[35px]">
 				<div className="max-w-[550px] mx-auto px-[16px]">
 					<Link to={"/"} className="w-full transition-all duration-300 hover:translate-x-1 cursor-pointer pb-[18px] justify-start items-center gap-4 flex">
@@ -58,7 +58,7 @@ const CreateOrder = ({ regions, users, orders }) => {
 					</Link>
 				</div>
 
-				<div className="overflow-auto">
+				<div className="overflow-auto min-h-dvh">
 					<div className="h-[22px] bg-[#E9EAED] w-full"></div>
 
 					<div className="max-w-[550px] mx-auto w-full p-4 bg-white flex-col justify-start items-start flex">
