@@ -10,7 +10,7 @@ import ProfileInfo from "../components/ProfileInfo";
 const Home = ({ regions, orders, users }) => {
 	const [tab, setTab] = useState(0);
 
-	const [statusTab, setStatusTab] = useState("New")
+	const [statusTab, setStatusTab] = useState("New");
 
 	useEffect(() => {
 		setTab(regions?.docs[0].data().name);
@@ -30,7 +30,7 @@ const Home = ({ regions, orders, users }) => {
 						<div
 							onClick={() => {
 								setTab(i.data().name);
-								setStatusTab("New")
+								setStatusTab("New");
 							}}
 							className={`${tab == i.data().name ? "bg-[#0084ff] text-white " : "bg-[#e9eaed] text-black "} flex-1 cursor-pointer h-[38px] p-1 rounded-md justify-start items-center gap-2.5 flex`}
 						>
@@ -60,22 +60,16 @@ const Home = ({ regions, orders, users }) => {
 				</div>
 
 				<div className="flex max-w-[550px] mx-auto justify-center mt-3 opacity-80">
-					{
-						!orders?.docs.filter(item => {
-							if (statusTab == item.data().status) {
-								if (item.data().location == tab) {
-									return item;
-								}
+					{!orders?.docs.filter((item) => {
+						if (statusTab == item.data().status) {
+							if (item.data().location == tab) {
+								return item;
 							}
-						})[0]
-						&&
-						<p>
-							No orders yet
-						</p>
-					}
+						}
+					})[0] && <p>No orders yet</p>}
 				</div>
 
-				<div className="max-w-[550px] mx-auto max-h-screen overflow-auto pb-[300px]">
+				<div className="max-w-[550px] mx-auto max-h-screen overflow-auto pb-[325px]">
 					{orders?.docs
 						.filter((item) => {
 							if (statusTab === item.data().status) {
@@ -90,13 +84,9 @@ const Home = ({ regions, orders, users }) => {
 								<div className="w-full bg-white rounded-lg flex-col justify-start items-start gap-4 inline-flex overflow-hidden">
 									<div className="self-stretch p-4 border-b border-[#e3e6ea] justify-start items-center gap-4 inline-flex">
 										<div className="grow shrink basis-0 flex-col justify-center items-start gap-1 inline-flex">
-											<div className="text-[#141414] text-base font-medium font-['Golos Text'] leading-snug">
-												Order №{i.data().order_count}
-											</div>
+											<div className="text-[#141414] text-base font-medium font-['Golos Text'] leading-snug">Order №{i.data().order_count}</div>
 											<div className="justify-start items-center gap-2 inline-flex">
-												<div className="text-[#6b6b6e] text-xs font-normal font-['Golos Text'] leading-[18px]">
-													{i.data().date}
-												</div>
+												<div className="text-[#6b6b6e] text-xs font-normal font-['Golos Text'] leading-[18px]">{i.data().date}</div>
 											</div>
 										</div>
 										<div
@@ -107,36 +97,22 @@ const Home = ({ regions, orders, users }) => {
                 ${i.data().status === "Cold" && " text-[#ff0000] bg-[#ffecec] "} 
                 px-2 py-1 rounded-lg border border-[#ffe6d1] justify-center items-center gap-2 flex`}
 										>
-											<div className={`text-right text-xs font-medium font-['Golos Text'] leading-[18px]`}>
-												{i.data().status}
-											</div>
+											<div className={`text-right text-xs font-medium font-['Golos Text'] leading-[18px]`}>{i.data().status}</div>
 										</div>
 									</div>
 
 									<div className="self-stretch h-[89px] px-4 flex-col justify-start items-start gap-4 flex">
 										<div className="self-stretch justify-between items-center inline-flex">
-											<div className="text-[#141414] text-[15px] font-normal font-['Inter'] leading-tight">
-												Client:
-											</div>
-											<div className="text-[#141414] text-[15px] font-medium font-['TT Interfaces'] leading-tight">
-												{i.data().client}
-											</div>
+											<div className="text-[#141414] text-[15px] font-normal font-['Inter'] leading-tight">Client:</div>
+											<div className="text-[#141414] text-[15px] font-medium font-['TT Interfaces'] leading-tight">{i.data().client}</div>
 										</div>
 										<div className="self-stretch justify-between items-center inline-flex">
-											<div className="text-[#141414] text-[15px] font-normal font-['Inter'] leading-tight">
-												Phone:
-											</div>
-											<div className="text-[#141414] text-[15px] font-medium font-['TT Interfaces'] leading-tight">
-												{i.data().phone}
-											</div>
+											<div className="text-[#141414] text-[15px] font-normal font-['Inter'] leading-tight">Phone:</div>
+											<div className="text-[#141414] text-[15px] font-medium font-['TT Interfaces'] leading-tight">{i.data().phone}</div>
 										</div>
 										<div className="self-stretch justify-between items-center inline-flex">
-											<div className="text-[#141414] text-[15px] font-normal font-['Inter'] leading-tight">
-												Location:
-											</div>
-											<div className="text-[#141414] text-[15px] font-medium font-['TT Interfaces'] leading-tight">
-												{i.data().location}
-											</div>
+											<div className="text-[#141414] text-[15px] font-normal font-['Inter'] leading-tight">Location:</div>
+											<div className="text-[#141414] text-[15px] font-medium font-['TT Interfaces'] leading-tight">{i.data().location}</div>
 										</div>
 									</div>
 
@@ -150,12 +126,10 @@ const Home = ({ regions, orders, users }) => {
 									</div>
 								</div>
 
-								{/* Only render the divider if this is not the last item */}
 								{index !== arr.length - 1 && <div className="h-[25px] bg-[#E9EAED] w-full"></div>}
 							</div>
 						))}
 				</div>
-
 			</div>
 
 			<div className="fixed bottom-0 bg-white left-0 w-full justify-center items-end gap-1 flex py-[18px] mt-[18px]">
