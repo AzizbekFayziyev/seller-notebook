@@ -77,7 +77,7 @@ const EditStatus = ({ i, setStatusTab }) => {
 
 					<div className="form-control w-full flex justify-between items-center">
 						<label className="label w-full cursor-pointer">
-							<div className="flex-1 text-[#ff000c] font-medium">Cancelled</div>
+							<div className="flex-1 text-[#ff000c] font-medium">Cold</div>
 
 							<input onChange={(e) => setCheked("Cold")} checked={checked == "Cold"} type="radio" name="radio-10" className="radio radio-sm checked:bg-[#ff000c]" />
 						</label>
