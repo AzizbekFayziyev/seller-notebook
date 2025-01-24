@@ -1,12 +1,14 @@
 import { db, app } from "../firebase/firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { getFirestore, collection, doc, setDoc, deleteDoc } from "firebase/firestore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AddProperty from "../components/AddProperty";
 
 const CreateOrder = ({ regions, users, orders }) => {
 	const navigate = useNavigate();
+
+	const searchParams = new URLSearchParams(window.location.search);
 
 	const [isLoading, setLoading] = useState(false);
 
@@ -18,23 +20,41 @@ const CreateOrder = ({ regions, users, orders }) => {
 
 	const [properties, setProperties] = useState([]);
 
+	const [data, setData] = useState()
+
+	useEffect(() => {
+		if (searchParams.has("id")) {
+			const dataLocal = orders?.docs.filter(i => i.id == searchParams.get("id"))[0]		
+			
+			setData(dataLocal)
+
+			setClient(dataLocal?.data().client);
+			setState(dataLocal?.data().location);
+			setRooms_count(dataLocal?.data().rooms_count);
+			setBudget(dataLocal?.data().budget);
+			setPhoneNumber(dataLocal?.data().phone);
+
+			setProperties(dataLocal?.data().arguments)
+		} 
+	}, []);
+
 	const createOrder = async () => {
 		if (!isLoading) {
 			setLoading(true);
-			const ordersRef = doc(db, "orders", `${new Date().getTime()}`);
+			const ordersRef = doc(db, "orders", searchParams.has("id") ? searchParams.get("id") : `${new Date().getTime()}`);
 
 			await setDoc(
 				ordersRef,
 				{
-					author: users?.docs.filter((i) => i.data().email == localStorage.getItem("email").toLowerCase())[0].data().fullname,
+					author: searchParams.has("id") ? data?.data().author : users?.docs.filter((i) => i.data().email == localStorage.getItem("email").toLowerCase())[0].data().fullname,
 					budget: budget,
 					client: client,
-					date: `${new Date().getDate()}.${new Date().getMonth()}.${new Date().getFullYear()} | ${new Date().getHours()}:${new Date().getMinutes()}`,
+					date: searchParams.has("id") ? data?.data().date : `${new Date().getDate()}.${new Date().getMonth()}.${new Date().getFullYear()} | ${new Date().getHours()}:${new Date().getMinutes()}`,
 					location: state,
-					order_count: orders?.docs[0]?.data()?.order_count ? parseInt(orders.docs[orders.docs.length - 1].data().order_count) + 1 : 1,
+					order_count: searchParams.has("id") ? data?.data().order_count : orders?.docs[0]?.data()?.order_count ? parseInt(orders.docs[orders.docs.length - 1].data().order_count) + 1 : 1,
 					phone: phoneNumber,
 					rooms_count: rooms_count,
-					status: "New",
+					status: searchParams.has("id") ? data?.data().status : "New",
 					arguments: properties,
 				},
 				{ merge: true }

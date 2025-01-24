@@ -16,6 +16,12 @@ const Home = ({ regions, orders, users }) => {
 		setTab(regions?.docs[0].data().name);
 	}, [regions]);
 
+	const [search, setSearch] = useState();
+
+	const deleteOrder = async (id) => {
+		await deleteDoc(doc(db, "orders", id));
+	};
+
 	return (
 		<div>
 			<div>
@@ -69,12 +75,42 @@ const Home = ({ regions, orders, users }) => {
 					})[0] && <p>No orders yet</p>}
 				</div>
 
+				{orders?.docs.filter((item) => {
+					if (statusTab == item.data().status) {
+						if (item.data().location == tab) {
+							return item;
+						}
+					}
+				})[0] && (
+					<div className="-mt-2.5 py-[20px] bg-[#E9EAED] w-full">
+						<div className="flex px-[24px] py-[14px] justify-between items-center mx-[15px] bg-[#F5F5F7] border border-[#C2C2C3] rounded-[12px]">
+							<input value={search} onChange={(e) => setSearch(e.target.value)} type="text" className="flex-1 outline-none bg-transparent h-full" placeholder="Search oder" />
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+								<g clip-path="url(#clip0_6073_1084)">
+									<path d="M18.3333 18.3333L16.6667 16.6667M1.66663 9.58332C1.66663 5.21107 5.21104 1.66666 9.58329 1.66666C13.9555 1.66666 17.5 5.21107 17.5 9.58332C17.5 13.9556 13.9555 17.5 9.58329 17.5C5.21104 17.5 1.66663 13.9556 1.66663 9.58332Z" stroke="#272727" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+								</g>
+								<defs>
+									<clipPath id="clip0_6073_1084">
+										<rect width="20" height="20" fill="white" />
+									</clipPath>
+								</defs>
+							</svg>
+						</div>
+					</div>
+				)}
+
 				<div className="max-w-[550px] mx-auto max-h-dvh overflow-auto pb-[325px]">
 					{orders?.docs
 						.filter((item) => {
 							if (statusTab === item.data().status) {
 								if (item.data().location === tab) {
-									return item;
+									if (!search) {
+										return item;
+									} else {
+										if (String(item.data()?.location)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.client)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.order_count)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.date)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.budget)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.author)?.toLowerCase().includes(search.toLowerCase())) {
+											return item;
+										}
+									}
 								}
 							}
 						})
@@ -91,11 +127,11 @@ const Home = ({ regions, orders, users }) => {
 										</div>
 										<div
 											className={`
-                ${i.data().status === "New" && " text-[#1878f3] bg-[#eefaff] "} 
-                ${i.data().status === "Process" && " text-[#781ecd] bg-[#f0e4ff] "} 
-                ${i.data().status === "Completed" && " text-[#009a10] bg-[#effff1] "} 
-                ${i.data().status === "Cold" && " text-[#ff0000] bg-[#ffecec] "} 
-                px-2 py-1 rounded-lg border border-[#ffe6d1] justify-center items-center gap-2 flex`}
+												${i.data().status === "New" && " text-[#1878f3] bg-[#eefaff] "} 
+												${i.data().status === "Process" && " text-[#781ecd] bg-[#f0e4ff] "} 
+												${i.data().status === "Completed" && " text-[#009a10] bg-[#effff1] "} 
+												${i.data().status === "Cold" && " text-[#ff0000] bg-[#ffecec] "} 
+												px-2 py-1 rounded-lg border border-[#ffe6d1] justify-center items-center gap-2 flex`}
 										>
 											<div className={`text-right text-xs font-medium font-['Golos Text'] leading-[18px]`}>{i.data().status}</div>
 										</div>
@@ -121,7 +157,7 @@ const Home = ({ regions, orders, users }) => {
 											<MoreDrawer i={i} />
 										</div>
 										<div className="flex-1">
-											<EditStatus setStatusTab={setStatusTab} i={i} />
+											<EditStatus deleteOrderFunc={deleteOrder} setStatusTab={setStatusTab} i={i} />
 										</div>
 									</div>
 								</div>

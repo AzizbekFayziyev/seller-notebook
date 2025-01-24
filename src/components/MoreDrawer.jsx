@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MoreDrawer = ({ i }) => {
+
+	const navigate = useNavigate()
+
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
 
 	const toggleDrawer = () => {
@@ -60,6 +64,11 @@ const MoreDrawer = ({ i }) => {
 
 				<div onClick={toggleDrawer} className="flex-1 mt-[16px] text-white hover:text-[#0084ff] cursor-pointer transition-all duration-300 bg-[#0084ff] py-3 hover:bg-white rounded-xl border border-[#0084ff] justify-center items-center gap-3 flex">
 					<div className="text-sm font-medium">Back</div>
+				</div>
+				<div onClick={() => {
+					navigate(`/create-order?id=${i.id}`)
+				}} className="flex-1 mt-[16px] text-white hover:text-[#fff] cursor-pointer transition-all duration-300 bg-[#008000] py-3 hover:bg-[#008000] rounded-xl justify-center items-center gap-3 flex">
+					<div className="text-sm font-medium">Edit</div>
 				</div>
 			</div>
 
