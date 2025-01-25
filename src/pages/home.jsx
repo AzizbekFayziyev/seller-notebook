@@ -82,8 +82,8 @@ const Home = ({ regions, orders, users }) => {
 						}
 					}
 				})[0] && (
-					<div className="-mt-2.5 py-[20px] bg-[#E9EAED] w-full">
-						<div className="flex px-[24px] py-[14px] justify-between items-center mx-[15px] bg-[#F5F5F7] border border-[#C2C2C3] rounded-[12px]">
+					<div className="-mt-2.5 px-[15px] py-[10px] bg-[#E9EAED] w-full">
+						<div className="flex max-w-[550px] mx-auto px-[24px] py-[14px] justify-between items-center bg-[#F5F5F7] border border-[#C2C2C3] rounded-[12px]">
 							<input value={search} onChange={(e) => setSearch(e.target.value)} type="text" className="flex-1 outline-none bg-transparent h-full" placeholder="Search oder" />
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 								<g clip-path="url(#clip0_6073_1084)">
@@ -99,7 +99,7 @@ const Home = ({ regions, orders, users }) => {
 					</div>
 				)}
 
-				<div className="max-w-[550px] mx-auto max-h-dvh overflow-auto pb-[325px]">
+				<div className="max-w-[550px] mx-auto max-h-dvh overflow-auto pb-[375px]">
 					{orders?.docs
 						.filter((item) => {
 							if (statusTab === item.data().status) {
