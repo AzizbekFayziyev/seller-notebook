@@ -73,7 +73,7 @@ const EditStatus = ({ i, setStatusTab, deleteOrderFunc }) => {
 					{/* Status options */}
 					{["New", "Process", "Completed", "Cold"].map((status, index) => (
 						<div key={index} className="form-control w-full flex justify-between items-center">
-							<label className="label w-full cursor-pointer">
+							<label className="label w-full cursor-pointer ">
 								<div className={`flex-1 font-medium text-[${status === "New" ? "#1878f3" : status === "Process" ? "#781ecd" : status === "Completed" ? "#009a10" : "#ff000c"}]`}>
 									{status}
 								</div>

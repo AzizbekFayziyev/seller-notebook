@@ -36,6 +36,7 @@ const Home = ({ regions, orders, users }) => {
 						<div
 							onClick={() => {
 								setTab(i.data().name);
+								setSearch("");
 								setStatusTab("New");
 								setSearch();
 							}}
