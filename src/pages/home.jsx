@@ -37,6 +37,7 @@ const Home = ({ regions, orders, users }) => {
 							onClick={() => {
 								setTab(i.data().name);
 								setStatusTab("New");
+								setSearch()
 							}}
 							className={`${tab == i.data().name ? "bg-[#0084ff] text-white " : "bg-[#e9eaed] text-black "} flex-1 cursor-pointer h-[38px] p-1 rounded-md justify-start items-center gap-2.5 flex`}
 						>
