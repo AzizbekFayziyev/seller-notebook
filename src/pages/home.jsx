@@ -107,7 +107,7 @@ const Home = ({ regions, orders, users }) => {
 									if (!search) {
 										return item;
 									} else {
-										if (String(item.data()?.location)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.client)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.order_count)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.date)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.budget)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.author)?.toLowerCase().includes(search.toLowerCase())) {
+										if (String(item.data()?.location)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.client)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.order_count)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.date)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.budget)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.author)?.toLowerCase().includes(search.toLowerCase()) || String(item.data()?.phone)?.toLowerCase().includes(search.toLowerCase())) {
 											return item;
 										}
 									}
