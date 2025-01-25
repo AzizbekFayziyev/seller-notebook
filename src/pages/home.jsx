@@ -37,7 +37,7 @@ const Home = ({ regions, orders, users }) => {
 							onClick={() => {
 								setTab(i.data().name);
 								setStatusTab("New");
-								setSearch()
+								setSearch();
 							}}
 							className={`${tab == i.data().name ? "bg-[#0084ff] text-white " : "bg-[#e9eaed] text-black "} flex-1 cursor-pointer h-[38px] p-1 rounded-md justify-start items-center gap-2.5 flex`}
 						>
@@ -76,31 +76,31 @@ const Home = ({ regions, orders, users }) => {
 					})[0] && <p>No orders yet</p>}
 				</div>
 
-				{orders?.docs.filter((item) => {
-					if (statusTab == item.data().status) {
-						if (item.data().location == tab) {
-							return item;
+				<div className="max-w-[550px] mx-auto max-h-dvh overflow-auto pb-[325px]">
+					{orders?.docs.filter((item) => {
+						if (statusTab == item.data().status) {
+							if (item.data().location == tab) {
+								return item;
+							}
 						}
-					}
-				})[0] && (
-					<div className="-mt-2.5 px-[15px] py-[10px] bg-[#E9EAED] w-full">
-						<div className="flex max-w-[550px] mx-auto px-[24px] py-[14px] justify-between items-center bg-[#F5F5F7] border border-[#C2C2C3] rounded-[12px]">
-							<input value={search} onChange={(e) => setSearch(e.target.value)} type="text" className="flex-1 outline-none bg-transparent h-full" placeholder="Search oder" />
-							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-								<g clip-path="url(#clip0_6073_1084)">
-									<path d="M18.3333 18.3333L16.6667 16.6667M1.66663 9.58332C1.66663 5.21107 5.21104 1.66666 9.58329 1.66666C13.9555 1.66666 17.5 5.21107 17.5 9.58332C17.5 13.9556 13.9555 17.5 9.58329 17.5C5.21104 17.5 1.66663 13.9556 1.66663 9.58332Z" stroke="#272727" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-								</g>
-								<defs>
-									<clipPath id="clip0_6073_1084">
-										<rect width="20" height="20" fill="white" />
-									</clipPath>
-								</defs>
-							</svg>
+					})[0] && (
+						<div className="px-[15px] py-[10px] bg-[#E9EAED] w-full">
+							<div className="flex max-w-[550px] mx-auto px-[24px] py-[14px] justify-between items-center bg-[#F5F5F7] border border-[#C2C2C3] rounded-[12px]">
+								<input value={search} onChange={(e) => setSearch(e.target.value)} type="text" className="flex-1 outline-none bg-transparent h-full" placeholder="Search oder" />
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+									<g clip-path="url(#clip0_6073_1084)">
+										<path d="M18.3333 18.3333L16.6667 16.6667M1.66663 9.58332C1.66663 5.21107 5.21104 1.66666 9.58329 1.66666C13.9555 1.66666 17.5 5.21107 17.5 9.58332C17.5 13.9556 13.9555 17.5 9.58329 17.5C5.21104 17.5 1.66663 13.9556 1.66663 9.58332Z" stroke="#272727" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+									</g>
+									<defs>
+										<clipPath id="clip0_6073_1084">
+											<rect width="20" height="20" fill="white" />
+										</clipPath>
+									</defs>
+								</svg>
+							</div>
 						</div>
-					</div>
-				)}
+					)}
 
-				<div className="max-w-[550px] mx-auto max-h-dvh overflow-auto pb-[375px]">
 					{orders?.docs
 						.filter((item) => {
 							if (statusTab === item.data().status) {
