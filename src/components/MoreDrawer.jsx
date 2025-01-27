@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const MoreDrawer = ({ i }) => {
-
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
 
@@ -42,10 +41,6 @@ const MoreDrawer = ({ i }) => {
 							<div className="w-28 h-[20px] text-[#141414] text-sm font-normal">Xonalar soni</div>
 							<div className="self-stretch h-[20px] text-[#141414] text-sm font-normal">Manzili</div>
 							<div className="self-stretch h-[20px] text-[#141414] text-sm font-normal">Budjet</div>
-
-							{i.data()?.arguments?.map((i) => (
-								<div className="self-stretch h-[20px] text-[#141414] text-sm font-normal">{i?.title}</div>
-							))}
 						</div>
 					</div>
 					<div className="flex-1 flex-col justify-start items-start gap-2 inline-flex">
@@ -55,19 +50,32 @@ const MoreDrawer = ({ i }) => {
 							<div className="self-stretch h-[20px] text-center text-[#141414] text-sm font-normal">{i.data().rooms_count}</div>
 							<div className="self-stretch h-[20px] text-center text-[#141414] text-sm font-normal">{i.data().location}</div>
 							<div className="self-stretch h-[20px] text-center text-[#141414] text-sm font-normal">{i.data().budget}</div>
-							{i.data()?.arguments?.map((i) => (
-								<pre className="self-stretch font-['Inter'] text-center text-[#141414] text-sm font-normal">{String(i.value)}</pre>
-							))}
 						</div>
 					</div>
+				</div>
+
+				<div>
+					{i.data()?.arguments?.map((i) => (
+						<div className="w-full mt-[16px] justify-between items-start flex">
+							<div className="w-[100px] flex-col justify-start items-start gap-2 flex">
+								<div className="self-stretch text-[#141414] text-sm font-normal">{i?.title}</div>
+							</div>
+							<div className="flex-1">
+								<pre className="self-stretch font-['Inter'] text-center text-[#141414] text-sm font-normal">{String(i.value)}</pre>
+							</div>
+						</div>
+					))}
 				</div>
 
 				<div onClick={toggleDrawer} className="flex-1 mt-[16px] text-white hover:text-[#0084ff] cursor-pointer transition-all duration-300 bg-[#0084ff] py-3 hover:bg-white rounded-xl border border-[#0084ff] justify-center items-center gap-3 flex">
 					<div className="text-sm font-medium">Back</div>
 				</div>
-				<div onClick={() => {
-					navigate(`/create-order?id=${i.id}`)
-				}} className="flex-1 mt-[16px] text-white hover:text-[#fff] cursor-pointer transition-all duration-300 bg-[#008000] py-3 hover:bg-[#008000] rounded-xl justify-center items-center gap-3 flex">
+				<div
+					onClick={() => {
+						navigate(`/create-order?id=${i.id}`);
+					}}
+					className="flex-1 mt-[16px] text-white hover:text-[#fff] cursor-pointer transition-all duration-300 bg-[#008000] py-3 hover:bg-[#008000] rounded-xl justify-center items-center gap-3 flex"
+				>
 					<div className="text-sm font-medium">Edit</div>
 				</div>
 			</div>
