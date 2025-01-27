@@ -22,6 +22,7 @@ const AddProperty = ({ setProperties }) => {
 		]);
 
 		toggleDrawer();
+		setTitle("");
 	};
 
 	return (
