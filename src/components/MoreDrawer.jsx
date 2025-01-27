@@ -38,25 +38,25 @@ const MoreDrawer = ({ i }) => {
 					<div className="w-[100px] flex-col justify-start items-start gap-2 flex">
 						<div className="self-stretch h-[18px] text-[#6b6b6e] text-xs font-normal">Name</div>
 						<div className="self-stretch flex-col justify-start items-start gap-4 flex">
-							<div className="w-[102px] text-[#141414] text-sm font-normal">Client name</div>
-							<div className="w-28 text-[#141414] text-sm font-normal">Xonalar soni</div>
-							<div className="self-stretch text-[#141414] text-sm font-normal">Manzili</div>
-							<div className="self-stretch text-[#141414] text-sm font-normal">Budjet</div>
+							<div className="w-[102px] h-[20px] text-[#141414] text-sm font-normal">Client name</div>
+							<div className="w-28 h-[20px] text-[#141414] text-sm font-normal">Xonalar soni</div>
+							<div className="self-stretch h-[20px] text-[#141414] text-sm font-normal">Manzili</div>
+							<div className="self-stretch h-[20px] text-[#141414] text-sm font-normal">Budjet</div>
 
 							{i.data()?.arguments?.map((i) => (
-								<div className="self-stretch text-[#141414] text-sm font-normal">{i?.title}</div>
+								<div className="self-stretch h-[20px] text-[#141414] text-sm font-normal">{i?.title}</div>
 							))}
 						</div>
 					</div>
 					<div className="flex-1 flex-col justify-start items-start gap-2 inline-flex">
 						<div className="self-stretch text-center text-[#6b6b6e] text-xs font-normal font-['Golos Text'] leading-[18px]">Descriptions</div>
 						<div className="self-stretch flex-col justify-start items-start gap-4 flex">
-							<div className="self-stretch text-center text-[#141414] text-sm font-normal">{i.data().client}</div>
-							<div className="self-stretch text-center text-[#141414] text-sm font-normal">{i.data().rooms_count}</div>
-							<div className="self-stretch text-center text-[#141414] text-sm font-normal">{i.data().location}</div>
-							<div className="self-stretch text-center text-[#141414] text-sm font-normal">{i.data().budget}</div>
+							<div className="self-stretch h-[20px] text-center text-[#141414] text-sm font-normal">{i.data().client}</div>
+							<div className="self-stretch h-[20px] text-center text-[#141414] text-sm font-normal">{i.data().rooms_count}</div>
+							<div className="self-stretch h-[20px] text-center text-[#141414] text-sm font-normal">{i.data().location}</div>
+							<div className="self-stretch h-[20px] text-center text-[#141414] text-sm font-normal">{i.data().budget}</div>
 							{i.data()?.arguments?.map((i) => (
-								<div className="self-stretch text-center text-[#141414] text-sm font-normal">{i.value}</div>
+								<pre className="self-stretch font-['Inter'] text-center text-[#141414] text-sm font-normal">{String(i.value)}</pre>
 							))}
 						</div>
 					</div>

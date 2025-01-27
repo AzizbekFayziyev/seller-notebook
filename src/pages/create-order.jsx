@@ -20,13 +20,13 @@ const CreateOrder = ({ regions, users, orders }) => {
 
 	const [properties, setProperties] = useState([]);
 
-	const [data, setData] = useState()
+	const [data, setData] = useState();
 
 	useEffect(() => {
 		if (searchParams.has("id")) {
-			const dataLocal = orders?.docs.filter(i => i.id == searchParams.get("id"))[0]		
-			
-			setData(dataLocal)
+			const dataLocal = orders?.docs.filter((i) => i.id == searchParams.get("id"))[0];
+
+			setData(dataLocal);
 
 			setClient(dataLocal?.data().client);
 			setState(dataLocal?.data().location);
@@ -34,8 +34,8 @@ const CreateOrder = ({ regions, users, orders }) => {
 			setBudget(dataLocal?.data().budget);
 			setPhoneNumber(dataLocal?.data().phone);
 
-			setProperties(dataLocal?.data().arguments)
-		} 
+			setProperties(dataLocal?.data().arguments);
+		}
 	}, []);
 
 	const createOrder = async () => {
@@ -139,10 +139,25 @@ const CreateOrder = ({ regions, users, orders }) => {
 
 						{properties.map((i, index) => (
 							<div className="w-full mt-[12px] flex-col justify-start items-start gap-2 flex">
-								<div className="self-stretch justify-start items-start gap-1 inline-flex">
-									<div className="grow shrink basis-0 text-[#141414] text-base font-medium">{i.title}</div>
-								</div>
-								<input
+								{searchParams.has("id") ? (
+									<div className="self-stretch justify-start items-start gap-1 inline-flex">
+										<input
+											onChange={(e) => {
+												const updatedProperties = [...properties];
+												updatedProperties[index].title = e.target.value;
+												setProperties(updatedProperties);
+											}}
+											value={i.title}
+											className="grow shrink underline outline-none basis-0 text-[#141414] text-base font-medium"
+										/>
+									</div>
+								) : (
+									<div className="self-stretch justify-start items-start gap-1 inline-flex">
+										<div className="grow shrink basis-0 text-[#141414] text-base font-medium">{i.title}</div>
+									</div>
+								)}
+
+								<textarea
 									value={i.value}
 									onChange={(e) => {
 										const updatedProperties = [...properties];
@@ -151,7 +166,7 @@ const CreateOrder = ({ regions, users, orders }) => {
 									}}
 									type="text"
 									placeholder={i.title}
-									className="w-full focus:border-gray-400 transition-all duration-300 outline-none px-4 py-3 bg-white text-[#161616] text-base rounded-xl border border-[#e3e6ea] justify-start items-center gap-3 inline-flex"
+									className="w-full min-h-32 focus:border-gray-400 transition-all duration-300 outline-none px-4 py-3 bg-white text-[#161616] text-base rounded-xl border border-[#e3e6ea] justify-start items-center gap-3 inline-flex"
 								/>
 							</div>
 						))}
