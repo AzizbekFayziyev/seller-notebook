@@ -166,7 +166,7 @@ const CreateOrder = ({ regions, users, orders }) => {
 									}}
 									type="text"
 									placeholder={i.title}
-									className="w-full min-h-32 focus:border-gray-400 transition-all duration-300 outline-none px-4 py-3 bg-white text-[#161616] text-base rounded-xl border border-[#e3e6ea] justify-start items-center gap-3 inline-flex"
+									className="w-full min-h-28 focus:border-gray-400 transition-all duration-300 outline-none px-4 py-3 bg-white text-[#161616] text-base rounded-xl border border-[#e3e6ea] justify-start items-center gap-3 inline-flex"
 								/>
 							</div>
 						))}
