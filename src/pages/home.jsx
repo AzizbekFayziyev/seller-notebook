@@ -117,14 +117,20 @@ const Home = ({ regions, orders, users }) => {
 							}
 						})
 						.reverse()
-						.map((i, index, arr) => (
-							<div key={i.id}>
+						.map((i, index, arr) => {
+							const rawDate = i?.data().date;
+							const [day, month, year] = rawDate.split(" | ")[0].split(".");
+							const time = rawDate.split(" | ")[1];
+
+							const formattedMonth = parseInt(month) + 1;
+
+							return <div key={i.id}>
 								<div className="w-full bg-white rounded-lg flex-col justify-start items-start gap-4 inline-flex overflow-hidden">
 									<div className="self-stretch p-4 border-b border-[#e3e6ea] justify-start items-center gap-4 inline-flex">
 										<div className="grow shrink basis-0 flex-col justify-center items-start gap-1 inline-flex">
 											<div className="text-[#141414] text-base font-medium font-['Golos Text'] leading-snug">Order №{i.data().order_count}</div>
 											<div className="justify-start items-center gap-2 inline-flex">
-												<div className="text-[#6b6b6e] text-xs font-normal font-['Golos Text'] leading-[18px]">{i.data().date}</div>
+												<div className="text-[#6b6b6e] text-xs font-normal font-['Golos Text'] leading-[18px]">{day}.{formattedMonth}.{year} | {time}</div>
 											</div>
 										</div>
 										<div
@@ -146,7 +152,7 @@ const Home = ({ regions, orders, users }) => {
 										</div>
 										<div className="self-stretch justify-between items-center inline-flex">
 											<div className="text-[#141414] text-[15px] font-normal font-['Inter'] leading-tight">Phone:</div>
-											<div className="text-[#141414] text-[15px] font-medium font-['TT Interfaces'] leading-tight">{i.data().phone}</div>
+											<a href={`tel:${i.data().phone}`} className="text-[#295dcd] text-[15px] font-medium font-['TT Interfaces'] leading-tight">{i.data().phone}</a>
 										</div>
 										<div className="self-stretch justify-between items-center inline-flex">
 											<div className="text-[#141414] text-[15px] font-normal font-['Inter'] leading-tight">Location:</div>
@@ -166,7 +172,7 @@ const Home = ({ regions, orders, users }) => {
 
 								{index !== arr.length - 1 && <div className="h-[25px] bg-[#E9EAED] w-full"></div>}
 							</div>
-						))}
+						})}
 				</div>
 			</div>
 

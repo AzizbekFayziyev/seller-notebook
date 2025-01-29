@@ -66,6 +66,17 @@ const CreateOrder = ({ regions, users, orders }) => {
 		}
 	};
 
+	const formatBudget = (value) => {
+		const numericValue = value.replace(/\D/g, "");
+		return numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+	};
+
+	const handleChangeBudget = (e) => {
+		const inputValue = e.target.value;
+		const formattedValue = `$${formatBudget(inputValue)}`;
+		setBudget(formattedValue);
+	};
+
 	return (
 		<div className="overflow-scroll h-dvh">
 			<div className="my-[35px]">
@@ -127,7 +138,7 @@ const CreateOrder = ({ regions, users, orders }) => {
 							<div className="self-stretch justify-start items-start gap-1 inline-flex">
 								<div className="grow shrink basis-0 text-[#141414] text-base font-medium">Budget</div>
 							</div>
-							<input value={budget} onChange={(e) => setBudget(e.target.value)} type="text" placeholder="$300 000" className="w-full focus:border-gray-400 transition-all duration-300 outline-none px-4 py-3 bg-white text-[#161616] text-base rounded-xl border border-[#e3e6ea] justify-start items-center gap-3 inline-flex" />
+							<input value={budget} onChange={handleChangeBudget} type="text" placeholder="$300 000" className="w-full focus:border-gray-400 transition-all duration-300 outline-none px-4 py-3 bg-white text-[#161616] text-base rounded-xl border border-[#e3e6ea] justify-start items-center gap-3 inline-flex" />
 						</div>
 
 						<div className="w-full mt-[12px] flex-col justify-start items-start gap-2 flex">
